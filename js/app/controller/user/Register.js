@@ -1,4 +1,4 @@
-define([
+﻿define([
     'app/controller/base',
     'app/util/ajax',
     'app/module/loading/loading',
@@ -14,31 +14,32 @@ define([
     var dcity;
     var darea;
 
-    init();
+    // init();
     //放入省市区json
-    base.getAddress()
-        .then(function(data) {
-            dCityData = data.citylist;
-        });
+    // base.getAddress()
+    //     .then(function(data) {
+    //         dCityData = data.citylist;
+    //     });
+
+    addListener();
+
+    // function init() {
+    //     base.getInitLocation(function(res) {
+    //         dprovince = sessionStorage.getItem("province");
+    //         dcity = sessionStorage.getItem("city");
+    //         darea = sessionStorage.getItem("area");
+
+    //         $('.r-address').html(dprovince + " " + dcity + " " + darea)
+    //         loading.hideLoading();
 
 
-    function init() {
-        base.getInitLocation(function(res) {
-            dprovince = sessionStorage.getItem("province");
-            dcity = sessionStorage.getItem("city");
-            darea = sessionStorage.getItem("area");
+    //     }, function() {
 
-            $('.r-address').html(dprovince + " " + dcity + " " + darea)
-            loading.hideLoading();
-
-            addListener();
-        }, function() {
-
-            loading.hideLoading();
-            addListener();
-            base.showMsg("定位失败请手动选择地址", 1000);
-        })
-    }
+    //         loading.hideLoading();
+    //         addListener();
+    //         base.showMsg("定位失败请手动选择地址", 1000);
+    //     })
+    // }
 
 
     function addListener() {
