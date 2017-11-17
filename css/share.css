@@ -856,7 +856,7 @@ input {
     background-size: cover;
     position: absolute;
     left: 33%;
-    top: 18%
+    top: 16%
 }
 
 .logo-font {
@@ -864,9 +864,9 @@ input {
     font-size: .50rem;
     line-height: .78rem;
     text-align: center;
-    padding-top: 5.26rem;
+    padding-top: 4.8rem;
     letter-spacing: 3px;
-    font-style: "微软雅黑"
+    font-weight: bold;
 }
 
 .logo-font p {
