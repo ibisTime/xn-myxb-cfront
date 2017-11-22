@@ -2,11 +2,13 @@ fis.hook('amd', {
     baseUrl: "./js",
     paths: {
         'Handlebars': 'lib/handlebars.runtime-v3.0.3',
-        'IScroll': "lib/iscroll",
-        'iScroll': "lib/iscroll1",
+        'IScroll': "lib/iscroll/iscroll",
+        'iScroll': "lib/iscroll/iscroll1",
+        'jweixin': 'lib/jweixin-1.0.0',
         'jValidate': "lib/validate/jquery.validate",
         'jquery': "lib/jquery-2.1.4",
-        'swiper': "lib/swiper/swiper-3.3.1.jquery.min"
+        'swiper': "lib/swiper/swiper-3.3.1.jquery.min",
+        'picker': "lib/picker/picker.min.js"
     },
     shim: {
         "IScroll": {
@@ -17,16 +19,23 @@ fis.hook('amd', {
         }
     }
 });
-fis.match('*.{js,css}', {
-    useHash: true
-});
-
 fis.match('*', {
     release: '/static/$0',
     //useMap: true
 });
 fis.match('*.html', {
     release: '/$0'
+});
+fis.match('*.{css,less,scss}', {
+  preprocessor: fis.plugin('autoprefixer', {
+    "browsers": ["Android >= 2.1", "iOS >= 4", "ie >= 8", "firefox >= 15"],
+    "cascade": true
+  })
+})
+fis.match('*.{js,css}', {
+    useHash: true
+}).match('config.js', {
+    useHash: false
 });
 
 //npm install -g fis-parser-handlebars-3.x
@@ -43,9 +52,6 @@ fis.match('::package', {
         useInlineMap: true
     })
 });
-fis.match('/js/module/**', {
-    isMod: true
-});
 fis.media("prod")
     .match('::package', {
         postpackager: fis.plugin('loader', {
@@ -58,8 +64,12 @@ fis.media("prod")
         packTo: '/pkg/common.js',
         packOrder: -100
     })
-    .match('{/js/lib/*.js,/js/app/util/*.js,/js/app/controller/base.js}', {
-        requires: ['/js/require.js'],
+    .match('/js/lib/jquery-2.1.4.js', {
+        packTo: '/pkg/common.js',
+        packOrder: -90
+    })
+    .match('{/js/app/util/ajax.js,/js/app/util/cookie.js,/js/app/util/dialog.js,/js/app/module/loading/index.js}', {
+        requires: ['/js/require.js', '/js/lib/jquery-2.1.4.js'],
         packTo: '/pkg/common.js'
     })
     .match("**.js", {
@@ -68,8 +78,10 @@ fis.media("prod")
     .match("**.css", {
         optimizer: fis.plugin('clean-css')
     })
-    .match("/css/*.css", {
-        packTo: '/pkg/common.css'
+    .match('/js/app/config.js', {
+        optimizer: null,
+        packTo: '/config/config.js',
+        useHash: false
     })
     .match('**.png', {
         optimizer: fis.plugin('png-compressor')
