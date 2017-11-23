@@ -9,12 +9,12 @@ define([
     
     function init() {
     	$(".sq-btn1").click(function(){
-    		getUrl();
+    		getUrl(iosUrl);
     	})
     	
-    	// $(".sq-btn2").click(function(){
-    	// 	getUrl(android);
-    	// })
+    	$(".sq-btn2").click(function(){
+    		getUrl(android);
+    	})
     	
     }
 	 
@@ -41,11 +41,11 @@ define([
 	        		}
 	        		
 	        	})
-					// if(t == ios){
-	    //     			window.location.href= iosUrl;
-	    //     		}else{
-	    //     			window.location.href= androidUrl;
-	    //     		}	        	
+					if(t == ios){
+	        			window.location.href= iosUrl;
+	        		}else{
+	        			window.location.href= androidUrl;
+	        		}	        	
 	        	
 	        	base.getUserBrowser(iosUrl,androidUrl);//跳转
 	        	

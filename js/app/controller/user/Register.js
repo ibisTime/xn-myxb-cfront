@@ -158,7 +158,7 @@
                     "loginPwd": userPwd,
                     "loginPwdStrength": base.calculateSecurityLevel(userPwd),
                     "userReferee": userReferee,
-                    "userRefereeKind": userRefereeKind,
+                    "userRefereeKind": "C",
                     "smsCaptcha": userCaptcha,
                     "kind": "C",
                     // "isRegHx": "0",
