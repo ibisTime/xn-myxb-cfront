@@ -9,37 +9,8 @@
     var userReferee = base.getUrlParam("mobile");
     var userRefereeKind = base.getUrlParam("kind");
     var temp = "";
-    var dCityData = "";
-    var dprovince;
-    var dcity;
-    var darea;
-
-    // init();
-    //放入省市区json
-    // base.getAddress()
-    //     .then(function(data) {
-    //         dCityData = data.citylist;
-    //     });
 
     addListener();
-
-    // function init() {
-    //     base.getInitLocation(function(res) {
-    //         dprovince = sessionStorage.getItem("province");
-    //         dcity = sessionStorage.getItem("city");
-    //         darea = sessionStorage.getItem("area");
-
-    //         $('.r-address').html(dprovince + " " + dcity + " " + darea)
-    //         loading.hideLoading();
-
-
-    //     }, function() {
-
-    //         loading.hideLoading();
-    //         addListener();
-    //         base.showMsg("定位失败请手动选择地址", 1000);
-    //     })
-    // }
 
 
     function addListener() {
@@ -72,14 +43,15 @@
         //         console.log(usernick);
         //     }
         // });
-        //注册协议
-
+        
         $(".r-popup-close").click(function() {
             $(".r-popup").fadeOut(500);
         });
 
+        //下载倍可盈app>
         $(".r-protocol").click(function() {
-            window.location.href = '../share/share-qrcord.html';
+        	var timestamp = new Date().getTime()
+            window.location.href = '../share/share-qrcord.html?timestamp'+timestamp;
 
         });
 
@@ -91,36 +63,46 @@
             if (userTel == null || userTel == "") {
                 base.showMsg("请输入手机号");
             } else if (getProvingTel($("#r-tel"))) {
-
+				
                 if (captchaTime == 60) {
-                    timer = setInterval(function() {
-                        captchaTime--;
-
-                        $("#rbtn-captcha").html("重新发送(" + captchaTime + ")").addClass('captchaTimeBg');
-
-                        if (captchaTime < 0) {
-                            clearInterval(timer);
-                            captchaTime = 60;
-                            $("#rbtn-captcha").html("获取验证码");
-                        }
-                    }, 1000);
-
-                    var parem = {
+                	var parem = {
                         "mobile": userTel,
                         "bizType": "805041",
                         "kind": "C",
                         "systemCode": SYSTEM_CODE,
                         "companyCode": SYSTEM_CODE,
                     }
-
-                    Ajax.post("805950", { json: parem })
+                	base.showLoading('发送中...')
+                	Ajax.post("805950", { json: parem })
                         .then(function(res) {
-                            if (res.success) {} else {
+                            if (res.success) {
+                            	captchaTime = 59;
+		                        $("#rbtn-captcha").html("重新发送(" + captchaTime + ")").addClass('captchaTimeBg');
+		                        
+                				base.hideLoading();
+		                        
+                            	timer = setInterval(function() {
+			                        captchaTime--;
+			
+			                        $("#rbtn-captcha").html("重新发送(" + captchaTime + ")").addClass('captchaTimeBg');
+			
+			                        if (captchaTime < 0) {
+			                            clearInterval(timer);
+			                            captchaTime = 60;
+			                            $("#rbtn-captcha").html("获取验证码");
+			                        }
+			                    }, 1000);
+                            	
+                            } else {
+                            	
+                				base.hideLoading();
                                 base.showMsg(res.msg);
                             }
                         }, function() {
                             base.showMsg("获取验证码失败");
                         });
+                    
+
                 }
             }
         });
@@ -139,7 +121,6 @@
             var userTel = $("#r-tel").val();
             var userCaptcha = $("#r-captcha").val();
             var userPwd = $("#r-pwd").val();
-            var address = $('.r-address').html()
             if (usernick == null || usernick == "") {
                 base.showMsg("请输入昵称");
             } else if (userTel == null || userTel == "") {
@@ -148,8 +129,6 @@
                 base.showMsg("请输入验证码");
             } else if (userPwd == null || userPwd == "") {
                 base.showMsg("请输入密码");
-            } else if (address == "请选择省市区") {
-                base.showMsg("请选择省市区");
             } else if (getProvingTel($("#r-tel"))) {
 
                 var parem = {
@@ -174,7 +153,8 @@
                         if (res.success) {
                             base.confirm("注册成功，请前往下载APP！")
                                 .then(function() {
-                                    window.location.href = '../share/share-qrcord.html';
+                                	var timestamp = new Date().getTime()
+                                    window.location.href = '../share/share-qrcord.html?timestamp='+timestamp;
                                     // base.getLocation(); //跳转
                                 }, function() {});
                         } else {
@@ -217,99 +197,5 @@
             return true;
         }
     }
-
-
-    //选择省
-    function getProvinceBuy() {
-        $("body #address_div").remove();
-        var province = dCityData;
-        var newStr = [];
-
-        newStr.push("<div id='address_div'><div class='addressTop'><samp></samp>选择地区</div><ul>");
-        for (var i = 0, psize = province.length; i < psize; i++) {
-            newStr.push("<li data-num='" + i + "'>" + province[i].p + "</li>");
-        }
-
-        newStr.push("</ul></div>");
-        $("body").append(newStr.join(""));
-        $("#address_div").on("click", "ul li", function() {
-            var val = $(this).attr("data-num");
-
-            dprovince = $(this).html();
-            getCityBuy(val);
-
-        })
-
-        addressOut();
-    }
-
-    //选择市
-    function getCityBuy(val) {
-        var province = dCityData;
-        var city = province[val].c;
-        var newStr = [];
-        newStr.push("<div id='address_div'><div class='addressTop'><samp></samp>选择地区</div><ul>");
-        for (var j = 0, csize = city.length; j < csize; j++) {
-            newStr.push("<li data-num='" + j + "," + val + "'  style='padding-left:20px;'>" + city[j].n + "</li>");
-        }
-        newStr.push("</ul></div>");
-        $("body #address_div").remove();
-        $("body").append(newStr.join(""));
-
-        $("#address_div").on("click", "ul li", function() {
-            var valTml = $(this).attr("data-num");
-            valTml = valTml.split(",");
-            var val = valTml[0];
-            var val1 = valTml[1];
-
-            if (city[val1].a) {
-
-                dcity = $(this).html();
-
-                getAreaBuy(val, val1);
-            } else {
-                dcity = dprovince;
-                darea = $(this).html();
-
-                $('.r-address').html(dprovince + " " + darea);
-                $("body #address_div").remove();
-            }
-
-        });
-
-        addressOut();
-    }
-
-    //选择区
-    function getAreaBuy(val, val1) {
-
-        var province = dCityData;
-        var city = province[val1].c;
-        var area = city[val].a;
-        var newStr = [];
-        newStr.push("<div id='address_div'><div class='addressTop'><samp></samp>选择地区</div><ul>");
-        for (var t = 0, asize = area.length; t < asize; t++) {
-            newStr.push("<li  style='padding-left:20px;' data-num='" + val1 + "," + val + "," + t + "'>" + area[t].s + "</li>");
-        }
-        newStr.push("</ul></div>");
-        $("body #address_div").remove();
-        $("body").append(newStr.join(""));
-
-        $("#address_div").on("click", "ul li", function() {
-
-            darea = $(this).html();
-            $('.r-address').html(dprovince + " " + dcity + " " + darea)
-
-            $("body #address_div").remove();
-        })
-        addressOut();
-    }
-
-    function addressOut() {
-        $("#address_div").on("click", ".addressTop", function() {
-            $("body #address_div").remove();
-        });
-    }
-
 
 });
