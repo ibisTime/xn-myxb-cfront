@@ -51,7 +51,7 @@
         //下载倍可盈app>
         $(".r-protocol").click(function() {
         	var timestamp = new Date().getTime()
-            window.location.href = '../share/share-qrcord.html?timestamp'+timestamp;
+            window.location.href = '../share/share-upload.html?timestamp'+timestamp;
 
         });
 
@@ -154,8 +154,7 @@
                             base.confirm("注册成功，请前往下载APP！")
                                 .then(function() {
                                 	var timestamp = new Date().getTime()
-                                    window.location.href = '../share/share-qrcord.html?timestamp='+timestamp;
-                                    // base.getLocation(); //跳转
+                                    window.location.href = '../share/share-upload.html?timestamp='+timestamp;
                                 }, function() {});
                         } else {
                             base.showMsg(res.msg);
