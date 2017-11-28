@@ -202,8 +202,9 @@ input {
     display: inline-block;
     overflow: hidden;
     color: #fff;
-    font-size: .26rem;
-    margin-top: .2rem;
+    font-size: .3rem;
+    margin-top: .25rem;
+    padding: .05rem .3rem .1rem;
     line-height: 2;
 }
 
@@ -434,6 +435,7 @@ input {
 	margin-top: 5.5rem;
 }
 .upload-btn{
+	display: block;
 	width: 5.7rem;
 	height: 1.06rem;
 	margin: 0 auto;
