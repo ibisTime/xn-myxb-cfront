@@ -296,12 +296,26 @@ input {
 }
 
 .ui-dialog-body {
-    padding: .35rem 0 .2rem !important;
+    padding: .3rem 0 .2rem !important;
+}
+
+.ui-dialog-title{
+    font-size: .28rem;
+    font-weight: normal !important;
+    padding: .2rem .3rem .15rem !important;
+}
+.ui-dialog-close{
+	top: .13rem !important;
+    right: .15rem !important;
+    _height: .46rem !important;
+    padding: 0 .15rem !important;
+    font-size: .46rem !important;
 }
 
 .ui-dialog-content {
-    line-height: .7rem;
+    line-height: 1.6;
     font-size: .3rem;
+    padding: 0 .3rem;
 }
 
 .ui-dialog-button {
@@ -309,7 +323,9 @@ input {
     text-align: center;
     padding-bottom: .1rem;
 }
-
+.ui-dialog-footer{
+	padding: 0 .2rem .25rem !important;
+}
 .ui-dialog-footer button {
     display: none !important;
 }

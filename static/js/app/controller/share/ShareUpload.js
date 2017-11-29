@@ -3,7 +3,7 @@ define([
     'app/util/ajax',
 ], function(base, Ajax) {
 	
-	var updateUrl,ios,android ;
+	var iosUpdateUrl,androidUpdateUrl;
 	
     init();
     
@@ -15,8 +15,22 @@ define([
 			getIosUrl()
 		).then(function(){
 			base.hideLoading()
+			$("#upload_android").click(function(){
+				if(base.getUserBrowser()=="android"){
+					location.href = androidUpdateUrl;
+				}else{
+					base.confirm("当前为iPhone系统请点击下载iPhone版！","确定").then(function(){},function(){})
+				}
+			})
+			$("#upload_ios").click(function(){
+				if(base.getUserBrowser()=="ios"){
+					location.href = iosUpdateUrl;
+				}else{
+					base.confirm("当前为android系统请点击下载android版！","确定").then(function(){},function(){})
+				}
+			})
+			
 		})
-		
     }
 	
 	function getAndroidUrl(){
@@ -26,7 +40,7 @@ define([
 			"companyCode":SYSTEM_CODE
 		}).then(function(res) {
 	        if (res.success) {
-        		$("#upload_android").attr("href",res.data.downloadUrl);
+        		androidUpdateUrl = res.data.downloadUrl;
 	        } else {
 	        	base.showMsg(res.msg);
 	        }
@@ -42,7 +56,7 @@ define([
 			"companyCode":SYSTEM_CODE
 		}).then(function(res) {
 	        if (res.success) {
-        		$("#upload_ios").attr("href",res.data.downloadUrl);
+        		iosUpdateUrl = res.data.downloadUrl;
 	        } else {
 	        	base.showMsg(res.msg);
 	        }

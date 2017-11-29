@@ -370,9 +370,10 @@ define([
         logout: function() {
             Base.clearSessionUser();
         },
-        confirm: function(msg) {
+        confirm: function(msg,okValue) {
             return (new Promise(function (resolve, reject) {
                 var d = dialog({
+                	title:'提示',
                     content: msg,
                     ok: function () {
                         var that = this;
@@ -387,14 +388,14 @@ define([
                         return true;
                     },
                     cancelValue: '取消',
-                    okValue: '去下载App'
+                    okValue: okValue||'去下载App'
                 });
                 d.showModal();
             }));
 
         },
         //判断终端
-        getUserBrowser:function(iosUrl,androidUrl){
+        getUserBrowser:function(){
         	var browser = {
                 versions: function() {
                     var u = navigator.userAgent, app = navigator.appVersion;
@@ -415,37 +416,11 @@ define([
             }
  
             if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {//ios
-                window.location.href= iosUrl;
+            	return 'ios';
             }
             else if (browser.versions.android) {//android
-                window.location.href= androidUrl;
+            	return 'android';
             }
-        },
-        //获取地址并跳转
-        getLocation: function(){
-//      	$.when(
-//				Ajax.get("615917",{
-//					"key":"iosDownUrl",
-//					"systemCode":SYSTEM_CODE,
-//					"companyCode":SYSTEM_CODE
-//				}),
-//				Ajax.get("615917",{
-//				"key":"androidDownUrl",
-//				"systemCode":SYSTEM_CODE,
-//				"companyCode":SYSTEM_CODE})
-//			).then(function(res1,res2) {
-//		        if (res1.success && res2.success) {
-//		        	iosUrl = res1.data.cvalue;
-//					androidUrl = res2.data.cvalue;
-//					//跳转
-//					Base.getUserBrowser(iosUrl,androidUrl);
-//		        } else {
-//		        	Base.showMsg(res1.msg || res2.msg);
-//		        }
-//		    }, function() {
-//		        Base.showMsg("获取地址失败");
-//		    });
-			window.location.href="../share/share-qrcord.html";
         },
         loadImg: function (html) {
             var wrap = $(html);

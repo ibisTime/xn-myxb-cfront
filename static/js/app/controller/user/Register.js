@@ -52,6 +52,12 @@
         $(".r-protocol").click(function() {
         	var timestamp = new Date().getTime()
             window.location.href = '../share/share-upload.html?timestamp'+timestamp;
+        	$(".r-input").each(function() {
+	            var txt = $(this).siblings(".r-input-placeholder").attr("data-txt");
+	            $(this).val("")
+	            $(this).siblings(".r-input-placeholder").html(txt);
+	            
+	        })
 
         });
 
@@ -99,6 +105,7 @@
                                 base.showMsg(res.msg);
                             }
                         }, function() {
+            				base.hideLoading();
                             base.showMsg("获取验证码失败");
                         });
                     
@@ -106,14 +113,6 @@
                 }
             }
         });
-
-
-        $("#r-address").click(function() {
-
-            getProvinceBuy();
-
-        });
-
 
         //提交
         $("#rbtn-sub").click(function() {
@@ -130,7 +129,7 @@
             } else if (userPwd == null || userPwd == "") {
                 base.showMsg("请输入密码");
             } else if (getProvingTel($("#r-tel"))) {
-
+				base.showLoading("注册中...");
                 var parem = {
                     "nickname": usernick,
                     "mobile": userTel,
@@ -150,16 +149,24 @@
 
                 Ajax.post("805041", { json: parem })
                     .then(function(res) {
+                    	base.hideLoading()
                         if (res.success) {
                             base.confirm("注册成功，请前往下载APP！")
                                 .then(function() {
                                 	var timestamp = new Date().getTime()
                                     window.location.href = '../share/share-upload.html?timestamp='+timestamp;
+                                    $(".r-input").each(function() {
+							            var txt = $(this).siblings(".r-input-placeholder").attr("data-txt");
+							            $(this).val("")
+							            $(this).siblings(".r-input-placeholder").html(txt);
+							            
+							        })
                                 }, function() {});
                         } else {
                             base.showMsg(res.msg);
                         }
                     }, function() {
+        				base.hideLoading();
                         base.showMsg("注册失败");
                     });
 
