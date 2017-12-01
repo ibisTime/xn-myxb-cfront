@@ -17,14 +17,22 @@ define([
 			base.hideLoading()
 			$("#upload_android").click(function(){
 				if(base.getUserBrowser()=="android"){
-					location.href = androidUpdateUrl;
+					if(androidUpdateUrl!=""&&androidUpdateUrl){
+						location.href = androidUpdateUrl;
+					}else{
+						base.confirm("当前android版尚未上线，敬请期待！","确定").then(function(){},function(){})
+					}
 				}else{
 					base.confirm("当前为iPhone系统请点击下载iPhone版！","确定").then(function(){},function(){})
 				}
 			})
 			$("#upload_ios").click(function(){
 				if(base.getUserBrowser()=="ios"){
-					location.href = iosUpdateUrl;
+					if(iosUpdateUrl!=""&&iosUpdateUrl){
+						location.href = iosUpdateUrl;
+					}else{
+						base.confirm("当前iPhone版尚未上线，敬请期待！","确定").then(function(){},function(){})
+					}
 				}else{
 					base.confirm("当前为android系统请点击下载android版！","确定").then(function(){},function(){})
 				}
