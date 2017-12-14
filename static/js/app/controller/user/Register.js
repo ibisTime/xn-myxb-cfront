@@ -24,18 +24,19 @@
             }
         })
 
-        $("#r-tel").blur(function() {
-            var userTel = $(this).val();
-
-            getProvingTel($(this));
-            if (temp == "" || temp != userTel) {
-                temp = userTel
-                captchaTime = 60;
-                $("#rbtn-captcha").html("获取验证码");
-            } else {
-                temp = temp;
-            }
-        });
+//      $("#r-tel").blur(function() {
+//          var userTel = $(this).val();
+//
+//          getProvingTel($(this));
+//          if (temp == "" || temp != userTel) {
+//              temp = userTel
+//              captchaTime = 60;
+//              $("#rbtn-captcha").html("获取验证码");
+//              $("#rbtn-captcha").removeClass("captchaTimeBg");
+//          } else {
+//              temp = temp;
+//          }
+//      });
         // $("#r-nick").blur(function() {
         //     var usernick = $(this).val();
         //     if (usernick < 3 || usernick > 6) {
@@ -96,6 +97,7 @@
 			                            clearInterval(timer);
 			                            captchaTime = 60;
 			                            $("#rbtn-captcha").html("获取验证码");
+			                            $("#rbtn-captcha").removeClass("captchaTimeBg");
 			                        }
 			                    }, 1000);
                             	
@@ -183,11 +185,13 @@
         timer = setInterval(function() {
             code--;
             obj.html("重新发送(" + code + ")");
+            
 
             if (code < 0) {
                 clearInterval(timer);
                 code = 60
                 obj.html("获取验证码");
+                obj.removeClass("captchaTimeBg");
             }
         }, 1000)
     }

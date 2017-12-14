@@ -18,7 +18,7 @@ define([
 			$("#upload_android").click(function(){
 				if(base.getUserBrowser()=="android"){
 					if(androidUpdateUrl!=""&&androidUpdateUrl){
-						location.href = androidUpdateUrl;
+						window.location.href = androidUpdateUrl;
 					}else{
 						base.confirm("当前android版尚未上线，敬请期待！","确定").then(function(){},function(){})
 					}
@@ -29,7 +29,7 @@ define([
 			$("#upload_ios").click(function(){
 				if(base.getUserBrowser()=="ios"){
 					if(iosUpdateUrl!=""&&iosUpdateUrl){
-						location.href = iosUpdateUrl;
+						window.location.href = iosUpdateUrl;
 					}else{
 						base.confirm("当前iPhone版尚未上线，敬请期待！","确定").then(function(){},function(){})
 					}
