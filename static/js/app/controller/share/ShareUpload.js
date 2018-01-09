@@ -18,7 +18,11 @@ define([
 			$("#upload_android").click(function(){
 				if(base.getUserBrowser()=="android"){
 					if(androidUpdateUrl!=""&&androidUpdateUrl){
-						window.location.href = androidUpdateUrl;
+						if(base.is_weixn()){
+							$(".upload-mask").removeClass("hidden")
+						}else{
+							window.location.href = androidUpdateUrl;
+						}
 					}else{
 						base.confirm("当前android版尚未上线，敬请期待！","确定").then(function(){},function(){})
 					}
@@ -29,6 +33,7 @@ define([
 			$("#upload_ios").click(function(){
 				if(base.getUserBrowser()=="ios"){
 					if(iosUpdateUrl!=""&&iosUpdateUrl){
+						
 						window.location.href = iosUpdateUrl;
 					}else{
 						base.confirm("当前iPhone版尚未上线，敬请期待！","确定").then(function(){},function(){})
@@ -38,6 +43,10 @@ define([
 				}
 			})
 			
+		})
+		
+		$(".upload-mask").click(function(){
+			$(".upload-mask").addClass("hidden")
 		})
     }
 	

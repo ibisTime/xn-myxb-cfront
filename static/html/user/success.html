@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="import" href="../head.html?__inline">
+    <title>注册成功-倍可盈</title>
+    <!--SCRIPT_PLACEHOLDER-->
+</head>
+
+<body class="hp100 bg_fff">
+	<div class="rs-wrap">
+		<div class="rs-top">
+			<i class="icon"></i>
+			<samp>注册成功</samp>
+		</div>
+		<div class="rs-line"></div>
+		<div class="rs-con">
+			<p class="txt">通过以下方式邀请好友注册，赚取返利。被邀请的人每完成一笔交易均可获得奖励</p>
+			<div class="rs-btn">
+				<button class="wrap href fl" id="copyBtn" data-clipboard-text="">
+					<i class="icon"></i>
+					<samp>复制链接</samp>
+				</button>
+				<div class="wrap qrcode fr" id="shareQrcodeBtn">
+					<i class="icon"></i>
+					<samp>分享二维码</samp>
+				</div>
+			</div>
+		</div>
+		<div class="rs-bottom">
+			<a class="btn" href="javascript:void(0)" id="goUpload">前往下载APP</a>
+		</div>
+	</div>
+	
+	<div class="dialog am-modal-wrap hiddeni" id="dialog">
+        <div class="am-modal-mask"></div>
+        <div class="am-modal">
+            <div class="am-modal-content">
+            	<p>请长按链接复制</p>
+            	<div class="href"></div>
+            </div>
+        </div>
+    </div>
+    <link rel="import" href="../footer.html?__inline">
+    <script src="../../js/lib/clipboard/clipboard.min.js"></script>
+    <script data-loader>
+        require(['app/controller/user/Success']);
+    </script>
+</body>
+
+</html>

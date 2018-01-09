@@ -462,7 +462,15 @@ define([
         hideLoading: function() {
             loading.hideLoading();
         },
-
+		is_weixn:function (){ 
+			var ua = navigator.userAgent.toLowerCase(); 
+			if(ua.match(/MicroMessenger/i)=="micromessenger") { 
+				return true; 
+			} else { 
+				return false; 
+			} 
+		}
+	
     };
 	
     return Base;

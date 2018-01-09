@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="import" href="../head.html?__inline">
+    <title>分享二维码-倍可盈</title>
+    <!--SCRIPT_PLACEHOLDER-->
+</head>
+
+<body class="hp100 bg-qr">
+	<div class="qr-wrap">
+		<div class="img-title">
+			<img src="../../images/标题@3x.png" />
+		</div>
+		<div class="img-down">
+			<img src="../../images/下拉@3x.png" />
+		</div>
+		<div class="qrcode">
+			<div id="qrcode"></div>
+		</div>
+		<div class="img-time">
+			<img src="../../images/时间@3x.png" />
+		</div>
+	</div>
+	
+    <link rel="import" href="../footer.html?__inline">
+    	<script src="../../js/lib/qrcode.js"></script>
+    <script data-loader>
+        require(['app/controller/user/Qrcode']);
+    </script>
+</body>
+
+</html>

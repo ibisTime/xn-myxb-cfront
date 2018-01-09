@@ -4,11 +4,12 @@ fis.hook('amd', {
         'Handlebars': 'lib/handlebars.runtime-v3.0.3',
         'IScroll': "lib/iscroll/iscroll",
         'iScroll': "lib/iscroll/iscroll1",
-        'jweixin': 'lib/jweixin-1.0.0',
+        'jweixin': 'lib/jweixin-1.2.0',
         'jValidate': "lib/validate/jquery.validate",
         'jquery': "lib/jquery-2.1.4",
         'swiper': "lib/swiper/swiper-3.3.1.jquery.min",
-        'picker': "lib/picker/picker.min.js"
+        'picker': "lib/picker/picker.min.js",
+        'clipboard': "lib/clipboard/clipboard.min.js"
     },
     shim: {
         "IScroll": {

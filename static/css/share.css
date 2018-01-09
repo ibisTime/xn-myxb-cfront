@@ -86,6 +86,10 @@ input {
     z-index: 9;
 }
 
+.hiddeni{
+	display: none !important;
+}
+
 /*注册*/
 
 .bg-r {
@@ -432,10 +436,10 @@ input {
 .uploadBg{
 	background-color: #f15353;
 	background-image: url("../images/图标@2x.png");
-	background-position-y: -.91rem;
-	background-position-x: center;
+	background-position-y: -.18rem;
+	background-position-x: .35rem;
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: 6.98rem;
 }
 .upload-logo{
 	width: 100%;
@@ -468,4 +472,218 @@ input {
 }
 .upload-ios{
 	background-image: url("../images/苹果@2x.png");
+}
+
+.rs-wrap{
+	width: 100%;
+}
+.rs-wrap .icon{
+	display: inline-block;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.rs-top{
+	text-align: center;
+	width: 100%;
+	padding: .8rem 0;
+}
+.rs-top .icon{
+	width: .44rem;
+	height: .44rem;
+	position: relative;
+	top: .08rem;
+	margin-right: .1rem;
+	background-image: url('../images/成功@2x.png');
+}
+.rs-top samp{
+	font-size: .36rem;
+}
+.rs-line{
+	width: 100%;
+	height: .2rem;
+	background-color: #f7f7f7;
+}
+.rs-con{
+	width: 100%;
+	padding: .4rem;
+}
+.rs-con .txt{
+	font-size: .26rem;
+	line-height: 2;
+}
+.rs-btn{
+	width: 100%;
+	overflow: hidden;
+	margin-top: .3rem;
+}
+.rs-btn .wrap{
+	width: 3.2rem;
+	border: 1px solid #f15353;
+	border-radius: .04rem;
+	padding: .15rem 0;
+	text-align: center;
+	background-color: #fff;
+}
+.rs-btn .wrap samp{
+	color: #F15353;
+	font-size: .26rem;
+}
+.rs-btn .wrap .icon{
+	width: .3rem;
+	height: .3rem;
+	background-size: .25rem;
+	position: relative;
+	margin-right: .1rem;
+}
+.rs-btn .wrap.href .icon{
+	background-image: url('../images/链接@2x.png');
+	top: .03rem;
+}
+.rs-btn .wrap.qrcode .icon{
+	background-image: url('../images/二维码@2x.png');
+	top: .04rem;
+}
+.rs-bottom{
+	width: 100%;
+	padding: 0 .4rem;
+	position: absolute;
+	bottom: .2rem;
+	left: 0;
+}
+.rs-bottom .btn{
+	display: inline-block;
+	width: 100%;
+	line-height: .68rem;
+	background-color: #F15353;
+	color: #fff;
+	font-size: .26rem;
+	text-align: center;
+	border-radius: .04rem;
+}
+
+.upload-mask{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,.5);
+	padding-right: .6rem;
+	padding-top: .2rem;
+}
+.upload-mask img{
+	width: 2rem;
+	float: right;
+}
+.upload-mask p{
+	position: absolute;
+    top: 2.2rem;
+    right: 2.4rem;
+    color: #fff;
+    text-align: center;
+    font-size: .28rem;
+}
+.bg-qr {
+    background-image: url(../images/bg2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.qr-wrap{
+	width: 100%;
+	text-align: center;
+}
+.qr-wrap .qrcode{
+	width: 3.6rem;
+	height: 3.6rem;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: .6rem;
+	background-image: url('../images/二维码bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.qr-wrap .qrcode div{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.qr-wrap .qrcode img{
+	width: 100%;
+}
+.qr-wrap .img-title{
+	padding: .76rem 1.3rem 0;
+}
+.qr-wrap .img-down{
+	height: .3rem;
+	margin-top: .46rem;
+	margin-bottom: .76rem;
+}
+.qr-wrap .img-down img{
+	height: 100%;
+}
+.qr-wrap .img-time{
+	margin-top: .8rem;
+	padding: 0 1.4rem;
+}
+.am-modal-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: 998;
+    background-color: rgba(0, 0, 0, .4);
+}
+
+.am-modal-wrap {
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    z-index: 999;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.am-modal {
+    position: relative;
+    z-index: 999;
+    width: 6.14rem;
+    height: auto;
+}
+.am-modal .am-modal-content {
+    background-color: #fff;
+    border: 0;
+    background-clip: padding-box;
+    text-align: center;
+    height: 100%;
+    overflow: hidden;
+    border-radius: .2rem;
+    height: auto;
+    padding: .3rem .3rem .2rem;
+    font-size: .28rem;
+}
+.am-modal .am-modal-content .href{
+	border: 1px solid #eee;
+	padding: .15rem 0;
+	margin: .2rem 0;
 }

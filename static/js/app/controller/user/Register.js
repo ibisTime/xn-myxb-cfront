@@ -2,11 +2,12 @@
     'app/controller/base',
     'app/util/ajax',
     'app/module/loading/loading',
-], function(base, Ajax, loading) {
+    'app/util/cookie',
+], function(base, Ajax, loading, CookieUtil) {
 
     var code = base.getUrlParam("code");
     var captchaTime = 60; //重新发送时间
-    var userReferee = base.getUrlParam("mobile");
+    var userReferee = base.getUrlParam("mobile")||"";
     var userRefereeKind = base.getUrlParam("kind");
     var temp = "";
 
@@ -14,6 +15,10 @@
 
 
     function addListener() {
+    	if(userReferee!=""){
+    		$("#r-ref-wrap").addClass("hidden")
+    	}
+    	
         $(".r-input").focus(function() {
             $(this).siblings(".r-input-placeholder").html(" ");
         })
@@ -132,13 +137,15 @@
                 base.showMsg("请输入密码");
             } else if (getProvingTel($("#r-tel"))) {
 				base.showLoading("注册中...");
+				
+				var uRef = userReferee!=""?userReferee: $("#r-ref").val()
                 var parem = {
                     "nickname": usernick,
                     "mobile": userTel,
                     "loginPwd": userPwd,
                     "loginPwdStrength": base.calculateSecurityLevel(userPwd),
-                    "userReferee": userReferee,
-                    "userRefereeKind": "C",
+                    "userReferee": uRef,
+                    "userRefereeKind": userRefereeKind||"C",
                     "smsCaptcha": userCaptcha,
                     "kind": "C",
                     // "isRegHx": "0",
@@ -153,17 +160,13 @@
                     .then(function(res) {
                     	base.hideLoading()
                         if (res.success) {
-                            base.confirm("注册成功，请前往下载APP！")
-                                .then(function() {
-                                	var timestamp = new Date().getTime()
-                                    window.location.href = '../share/share-upload.html?timestamp='+timestamp;
-                                    $(".r-input").each(function() {
-							            var txt = $(this).siblings(".r-input-placeholder").attr("data-txt");
-							            $(this).val("")
-							            $(this).siblings(".r-input-placeholder").html(txt);
-							            
-							        })
-                                }, function() {});
+            				CookieUtil.set("m", userTel);
+                            window.location.href = '../user/success.html';
+                            $(".r-input").each(function() {
+					            var txt = $(this).siblings(".r-input-placeholder").attr("data-txt");
+					            $(this).val("")
+					            $(this).siblings(".r-input-placeholder").html(txt);
+					        })
                         } else {
                             base.showMsg(res.msg);
                         }
