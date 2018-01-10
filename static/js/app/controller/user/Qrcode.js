@@ -3,16 +3,18 @@
     'app/util/ajax',
     'app/module/loading/loading',
     'app/util/cookie',
-], function(base, Ajax, loading,CookieUtil) {
+    'html2canvas',
+], function(base, Ajax, loading,CookieUtil,html2canvas) {
+	window['html2canvas']=html2canvas;
 	
-    var mobile;
+    var inviteCode;
 	
 	if(base.is_weixn()){
-		mobile = CookieUtil.get("m")||""
+		inviteCode = CookieUtil.get("inviteCode")||""
 	}else{
-		mobile= base.getUrlParam("m")
+		inviteCode= base.getUrlParam("inviteCode")
 	}
-	if(mobile==""&&base.is_weixn()){
+	if(inviteCode==""&&base.is_weixn()){
 		window.location.href='../user/register.html'
 	}else{
 		init()
@@ -21,9 +23,14 @@
 	function init(){
     	base.showLoading();
     	var domain = window.location.host;
-    	var href = "http://"+domain+"/user/register.html?mobile="+mobile;
+    	var href = "http://"+domain+"/user/register.html?inviteCode="+inviteCode;
     	var qrcode = new QRCode('qrcode',href);
-    	base.hideLoading();
+    	setTimeout(function(){
+    		html2canvas(document.querySelector("#qrWrap")).then(canvas => {
+			    $("#canvasWrap").html(canvas);
+	    		base.hideLoading();
+			});
+    	},10)
 	}
 	
 

@@ -7,7 +7,7 @@
 
     var code = base.getUrlParam("code");
     var captchaTime = 60; //重新发送时间
-    var userReferee = base.getUrlParam("mobile")||"";
+    var inviteCode = base.getUrlParam("inviteCode")||"";
     var userRefereeKind = base.getUrlParam("kind");
     var temp = "";
 
@@ -15,7 +15,7 @@
 
 
     function addListener() {
-    	if(userReferee!=""){
+    	if(inviteCode!=""){
     		$("#r-ref-wrap").addClass("hidden")
     	}
     	
@@ -138,13 +138,14 @@
             } else if (getProvingTel($("#r-tel"))) {
 				base.showLoading("注册中...");
 				
-				var uRef = userReferee!=""?userReferee: $("#r-ref").val()
+				var userReferee = $("#r-ref").val()
                 var parem = {
                     "nickname": usernick,
                     "mobile": userTel,
                     "loginPwd": userPwd,
                     "loginPwdStrength": base.calculateSecurityLevel(userPwd),
-                    "userReferee": uRef,
+                    "userReferee": userReferee,
+                    "inviteCode":inviteCode,
                     "userRefereeKind": userRefereeKind||"C",
                     "smsCaptcha": userCaptcha,
                     "kind": "C",
@@ -160,8 +161,16 @@
                     .then(function(res) {
                     	base.hideLoading()
                         if (res.success) {
-            				CookieUtil.set("m", userTel);
-                            window.location.href = '../user/success.html';
+                        	
+                        	Ajax.get("805121", { 
+                        		userId: res.data.userId
+                        	}).then(function(res) {
+                    			CookieUtil.set("inviteCode", res.data.secretUserId);
+                            	window.location.href = '../user/success.html';
+		                    }, function() {
+		        				base.hideLoading();
+		                        base.showMsg("请求失败");
+		                    });
                             $(".r-input").each(function() {
 					            var txt = $(this).siblings(".r-input-placeholder").attr("data-txt");
 					            $(this).val("")

@@ -7,9 +7,9 @@
 ], function(base, Ajax, loading,clipboard,CookieUtil) {
 	window['Clipboard']=clipboard;
 	
-    var mobile = CookieUtil.get("m")||'';
+    var inviteCode = CookieUtil.get("inviteCode")||'';
 	
-	if(mobile==""||!mobile){
+	if(inviteCode==""||!inviteCode){
 		window.location.href='../user/register.html'
 	}else{
 		init()
@@ -18,8 +18,8 @@
 	function init(){
     	base.showLoading();
     	var domain = window.location.host;
-    	$("#copyBtn").attr("data-clipboard-text","http://"+domain+"/user/register.html?mobile="+mobile)
-    	$("#dialog .href").html("http://"+domain+"/user/register.html?mobile="+mobile)
+    	$("#copyBtn").attr("data-clipboard-text","http://"+domain+"/user/register.html?inviteCode="+inviteCode)
+    	$("#dialog .href").html("http://"+domain+"/user/register.html?inviteCode="+inviteCode)
     	addListener();
     	base.hideLoading();
 	}
@@ -40,7 +40,7 @@
 		
 		$("#shareQrcodeBtn").click(function(){
 			var timestamp = new Date().getTime()
-			window.location.href = '../user/qrcode.html?m='+mobile+'&timestamp='+timestamp;
+			window.location.href = '../user/qrcode.html?timestamp='+timestamp;
 		})
 		
 		$(".am-modal-mask").click(function(){
