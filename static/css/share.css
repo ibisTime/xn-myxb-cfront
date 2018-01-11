@@ -637,6 +637,9 @@ input {
 	left: 0;
 	z-index: 999;
 }
+.canvasWrap-img{
+	z-index: 9999;
+}
 .am-modal-mask {
     position: fixed;
     top: 0;

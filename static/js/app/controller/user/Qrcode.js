@@ -7,13 +7,12 @@
 ], function(base, Ajax, loading,CookieUtil,html2canvas) {
 	window['html2canvas']=html2canvas;
 	
-    var inviteCode;
+    var inviteCode = base.getUrlParam("inviteCode")||"";
 	
-	if(base.is_weixn()){
+	if(inviteCode==""||!inviteCode){
 		inviteCode = CookieUtil.get("inviteCode")||""
-	}else{
-		inviteCode= base.getUrlParam("inviteCode")
 	}
+	
 	if(inviteCode==""&&base.is_weixn()){
 		window.location.href='../user/register.html'
 	}else{
@@ -25,12 +24,17 @@
     	var domain = window.location.host;
     	var href = "http://"+domain+"/user/register.html?inviteCode="+inviteCode;
     	var qrcode = new QRCode('qrcode',href);
+    	
     	setTimeout(function(){
     		html2canvas(document.querySelector("#qrWrap")).then(canvas => {
 			    $("#canvasWrap").html(canvas);
-	    		base.hideLoading();
+			    
+			    setTimeout(function(){
+				    $("#canvasWrapImg").html("<img src='"+canvas.toDataURL("image/png")+"' />");
+		    		base.hideLoading();
+		    	},50)
 			});
-    	},10)
+    	},100)
 	}
 	
 
