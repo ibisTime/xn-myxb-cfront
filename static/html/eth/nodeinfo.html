@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="import" href="../head.html?__inline">
+    <title>eth/nodeinfo</title>
+    <!--SCRIPT_PLACEHOLDER-->
+</head>
+
+<body>
+	<div class="upload-logo">
+		<div class="uploadWrap">
+			<input type="button" value="" class="upload-btn" id="infuraBlockNumber"/>
+			<input type="button" value="" class="upload-btn" id="infuraGasPrice"/>
+			<input type="button" value="" class="upload-btn" id="bcoinBlockNumber"/>
+			<input type="button" value="" class="upload-btn" id="bcoinGasPrice"/>
+			<input type="button" value="" class="upload-btn" id="bcoinScaned"/>
+
+		</div>
+	</div>
+	<!--<div class="upload-mask hidden">-->
+		<!--<img src="../../images/rightArrow.png" />-->
+		<!--<p>请点击右上角<br/>点击在浏览器打开下载APP</p>-->
+	<!--</div>-->
+    <link rel="import" href="../footer.html?__inline">
+    <script data-loader>
+        require(['app/controller/eth/nodeinfo']);
+    </script>
+</body>
+</html>
