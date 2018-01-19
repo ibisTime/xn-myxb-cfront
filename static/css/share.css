@@ -699,3 +699,22 @@ input {
 	padding: .15rem 0;
 	margin: .2rem 0;
 }
+.nodeinfoContainer{
+    background:rgb(241,83,83);
+    margin-top:0;
+    position:fixed;
+    height:100%
+}
+.nodeinfoContainer img{
+    margin-top:1.2rem;
+    margin-left:-3rem
+}
+.nodeinfoButtons{
+    margin-top:0.5rem;
+    padding-top:0.5rem
+}
+.nodeinfoButtons input{
+    text-align:left;
+    padding-left:0.2rem;
+    font-size:0.3rem
+}
