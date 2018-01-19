@@ -25,17 +25,31 @@
     	var href = "http://"+domain+"/user/register.html?inviteCode="+inviteCode;
     	var qrcode = new QRCode('qrcode',href);
     	
-    	setTimeout(function(){
-    		html2canvas(document.querySelector("#qrWrap")).then(canvas => {
-			    $("#canvasWrap").html(canvas);
-			    
-			    setTimeout(function(){
-				    $("#canvasWrapImg").html("<img src='"+canvas.toDataURL("image/png")+"' />");
-		    		base.hideLoading();
-		    	},50)
-			});
-    	},100)
-	}
+    	// setTimeout(function(){
+    	// 	html2canvas(document.querySelector("#qrWrap")).then(canvas => {
+			//     $("#canvasWrap").html(canvas);
+			//
+			//     setTimeout(function(){
+			// 	    $("#canvasWrapImg").html("<img src='"+canvas.toDataURL("image/png")+"' />");
+		 //    		base.hideLoading();
+		 //    	},50)
+			// });
+    	// },100)
+
+        if(html2canvas){
+            setTimeout(function(){
+                html2canvas(document.querySelector("#qrWrap")).then(canvas => {
+                    $("#canvasWrap").html(canvas);
+
+                setTimeout(function(){
+                    $("#canvasWrapImg").html("<img src='"+canvas.toDataURL("image/png")+"' />");
+                    base.hideLoading();
+                },50)
+            });
+            },200)
+        }
+
+    }
 	
 
 });
