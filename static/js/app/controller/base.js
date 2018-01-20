@@ -417,8 +417,7 @@ define([
  
             if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {//ios
             	return 'ios';
-            }
-            else if (browser.versions.android) {//android
+            }else{//android
             	return 'android';
             }
         },

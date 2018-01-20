@@ -337,7 +337,8 @@ input {
 .ui-dialog-footer button.ui-dialog-autofocus {
     display: inline-block !important;
     margin: 0 auto;
-    background-color: #ffb912 !important;
+    background-color: #ff4332 !important;
+    border-color: #ff4332 !important;
     font-size: .25rem;
     padding: .1rem .25rem;
     outline: none !important;
