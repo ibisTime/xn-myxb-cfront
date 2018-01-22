@@ -5,7 +5,9 @@
   "main": "fis-conf.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "fis3 release -d ../../xn-health-front/dist -w"
+    "server": "fis3 release -d ../../xn-health-front/dist -w",
+    "dev": "fis3 release -d D:/chengdai_dabao/bcoin_h5 -w",
+    "build": "fis3 release -d D:/chengdai_dabao/bcoin_h5 prod"
   },
   "author": "",
   "license": "ISC",

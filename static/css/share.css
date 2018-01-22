@@ -337,7 +337,8 @@ input {
 .ui-dialog-footer button.ui-dialog-autofocus {
     display: inline-block !important;
     margin: 0 auto;
-    background-color: #ffb912 !important;
+    background-color: #ff4332 !important;
+    border-color: #ff4332 !important;
     font-size: .25rem;
     padding: .1rem .25rem;
     outline: none !important;
@@ -698,4 +699,23 @@ input {
 	border: 1px solid #eee;
 	padding: .15rem 0;
 	margin: .2rem 0;
+}
+.nodeinfoContainer{
+    background:rgb(241,83,83);
+    margin-top:0;
+    position:fixed;
+    height:100%
+}
+.nodeinfoContainer img{
+    margin-top:1.2rem;
+    margin-left:-3rem
+}
+.nodeinfoButtons{
+    margin-top:0.5rem;
+    padding-top:0.5rem
+}
+.nodeinfoButtons input{
+    text-align:left;
+    padding-left:0.2rem;
+    font-size:0.3rem
 }

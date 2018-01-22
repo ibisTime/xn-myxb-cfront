@@ -19,6 +19,12 @@
     		$("#r-ref-wrap").addClass("hidden")
     	}
     	
+        $("#r-nick").val("");
+        $("#r-tel").val("");
+        $("#r-captcha").val("");
+        $("#r-pwd").val("");
+    	
+    	
         $(".r-input").focus(function() {
             $(this).siblings(".r-input-placeholder").html(" ");
         })
