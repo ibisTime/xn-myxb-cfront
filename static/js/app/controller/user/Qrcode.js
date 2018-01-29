@@ -4,8 +4,11 @@
 	'app/module/loading/loading',
 	'app/util/cookie',
 	'html2canvas',
-], function(base, Ajax, loading, CookieUtil, html2canvas) {
-
+	'lib/es6-promise.min.js'
+], function(base, Ajax, loading, CookieUtil, html2canvas, Promise) {
+	
+	Promise.polyfill();
+	
 	var inviteCode = base.getUrlParam("inviteCode") || "";
 
 	if(inviteCode == "" || !inviteCode) {
@@ -24,11 +27,7 @@
 		var href = "http://" + domain + "/user/register.html?inviteCode=" + inviteCode;
 		var qrcode = new QRCode('qrcode', href);
 
-		try {
-			if(typeof(eval(html2canvas)) == "function") {
-				window['html2canvas'] = html2canvas;
 				setTimeout(function() {
-					try {
 						html2canvas(document.getElementById("qrWrap")).then(function(canvas) {
 							$("#canvasWrap").html(canvas);
 		
@@ -39,21 +38,7 @@
 						},function(){
 							html2canvasError();
 						});
-					} catch(e) {
-						html2canvasError();
-					}
 				}, 300)
-			} else {
-				html2canvasError();
-			}
-		} catch(e) {
-			html2canvasError();
-		}
 	}
 	
-	function html2canvasError(){
-		$("#canvasWrapImg").addClass("hidden")
-		$("#canvasWrap").addClass("hidden")
-		base.hideLoading();
-	}
 });
