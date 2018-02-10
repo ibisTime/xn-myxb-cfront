@@ -701,14 +701,14 @@ input {
 	margin: .2rem 0;
 }
 .nodeinfoContainer{
-    background:rgb(241,83,83);
-    margin-top:0;
-    position:fixed;
-    height:100%
+	width: 100%;
+    background-color: #F15353;
+    padding-bottom: .5rem;
 }
 .nodeinfoContainer img{
-    margin-top:1.2rem;
-    margin-left:-3rem
+	height: 1.2rem;
+    margin-top:.6rem;
+    margin-left:.3rem
 }
 .nodeinfoButtons{
     margin-top:0.5rem;
@@ -718,4 +718,41 @@ input {
     text-align:left;
     padding-left:0.2rem;
     font-size:0.3rem
+}
+.nodeinfo-wrap{
+	width: 100%;
+	padding: 0 .35rem;
+}
+.nodeinfo-wrap .item{
+	width: 100%;
+	height: .8rem;
+	line-height: .8rem;
+	font-size: .3rem;
+	background-color: #fff;
+	border-radius: .04rem;
+	padding: 0 .2rem;
+	margin: .3rem 0;
+	text-align: left;
+}
+.nodeinfo-wrap .title{
+	position: relative;
+}
+.nodeinfo-wrap .title samp{
+	position: relative;
+	z-index: 99;
+	display: inline-block;
+	font-size: .36rem;
+	color: #fff;
+	background-color: #F15353;
+	padding: .05rem .1rem;
+	margin-left: .3rem;
+}
+.nodeinfo-wrap .title i{
+	display: inline-block;
+	width: 100%;
+	height: 1px;
+	background-color: #fff;
+	position: absolute;
+	top: 50%;
+	left: 0;
 }
