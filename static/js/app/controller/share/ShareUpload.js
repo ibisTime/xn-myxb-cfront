@@ -51,7 +51,7 @@ define([
     }
 	
 	function getAndroidUrl(){
-		return Ajax.get("625918",{
+		return Ajax.get("660918",{
 			"type":"android-c",
 			"systemCode":SYSTEM_CODE,
 			"companyCode":SYSTEM_CODE
@@ -67,7 +67,7 @@ define([
 	}
 	
 	function getIosUrl(){
-		return Ajax.get("625918",{
+		return Ajax.get("660918",{
 			"type":"ios-c",
 			"systemCode":SYSTEM_CODE,
 			"companyCode":SYSTEM_CODE
