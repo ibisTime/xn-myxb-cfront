@@ -3,19 +3,24 @@
 
 <head>
     <link rel="import" href="../head.html?__inline">
-    <title>倍可盈</title>
+    <title>美业销帮</title>
     <!--SCRIPT_PLACEHOLDER-->
 </head>
 
 <body class="hp100 bg-r">
     <div class="r-wrap">
         <div class="r-telWrap">
-            <div class="r-icon">昵称</div>
-            <input class="r-style r-input" type="text" id="r-nick" />
-            <div class="r-style r-input-placeholder" data-txt="请设置昵称">请设置昵称</div>
+            <div class="r-icon">角色注册</div>
+            <select class="r-style r-input" id="r-nick"/>
+                <option class="r-style r-input" style="width: 100px;"value ="md">美导</option>
+                <option class="r-style r-input" value ="js">讲师</option>
+                <option class="r-style r-input" value="zj">专家</option>
+                <option class="r-style r-input" value="mry">美容院</option>
+            </select>
+            <div class="r-style r-input-placeholder" data-txt="请选择角色">请选择角色</div>
         </div>
         <div class="r-telWrap">
-            <div class="r-icon">手机号码</div>
+            <div class="r-icon">手机号</div>
             <input class="r-style r-input" type="tel" id="r-tel" pattern="[0-9]*" />
             <div class="r-style r-input-placeholder" data-txt="请输入手机号码">请输入手机号码</div>
         </div>
@@ -31,11 +36,6 @@
             <div class="r-icon">密码</div>
             <input class="r-style r-input" type="password" id="r-pwd" />
             <div class="r-style r-input-placeholder" data-txt="请输入密码">请输入密码(不少于6位)</div>
-        </div>
-        <div class="r-telWrap " id="r-ref-wrap">
-            <div class="r-icon">推荐人手机</div>
-            <input class="r-style r-input" type="tel" id="r-ref" pattern="[0-9]*" />
-            <div class="r-style r-input-placeholder" data-txt="请输入推荐人手机号码">请输入推荐人手机号码</div>
         </div>
         <input type="button" class="rbtn-sub" id="rbtn-sub" value="注册" />
     </div>

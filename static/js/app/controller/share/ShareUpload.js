@@ -8,7 +8,7 @@ define([
     init();
     
     function init() {
-    	
+        base.showMsg("注册成功，请等待系统审核");
 		base.showLoading("加载中...")
 		$.when(
 			getAndroidUrl(),
@@ -51,13 +51,13 @@ define([
     }
 	
 	function getAndroidUrl(){
-		return Ajax.get("625918",{
-			"type":"android-c",
+		return Ajax.get("805917",{
+			"ckey":"android_download",
 			"systemCode":SYSTEM_CODE,
 			"companyCode":SYSTEM_CODE
 		}).then(function(res) {
 	        if (res.success) {
-        		androidUpdateUrl = res.data.downloadUrl;
+        		androidUpdateUrl = res.data.cvalue;
 	        } else {
 	        	base.showMsg(res.msg);
 	        }
@@ -67,13 +67,13 @@ define([
 	}
 	
 	function getIosUrl(){
-		return Ajax.get("625918",{
-			"type":"ios-c",
+		return Ajax.get("805917",{
+			"ckey":"ios_download",
 			"systemCode":SYSTEM_CODE,
 			"companyCode":SYSTEM_CODE
 		}).then(function(res) {
 	        if (res.success) {
-        		iosUpdateUrl = res.data.downloadUrl;
+        		iosUpdateUrl = res.data.cvalue;
 	        } else {
 	        	base.showMsg(res.msg);
 	        }

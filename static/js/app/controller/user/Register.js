@@ -61,17 +61,17 @@
         });
 
         //下载倍可盈app>
-        $(".r-protocol").click(function() {
-        	var timestamp = new Date().getTime()
-            window.location.href = '../share/share-upload.html?timestamp'+timestamp;
-        	$(".r-input").each(function() {
-	            var txt = $(this).siblings(".r-input-placeholder").attr("data-txt");
-	            $(this).val("")
-	            $(this).siblings(".r-input-placeholder").html(txt);
-	            
-	        })
-
-        });
+        // $(".r-protocol").click(function() {
+        // 	var timestamp = new Date().getTime()
+        //     window.location.href = '../share/share-upload.html?timestamp'+timestamp;
+        // 	$(".r-input").each(function() {
+	     //        var txt = $(this).siblings(".r-input-placeholder").attr("data-txt");
+	     //        $(this).val("")
+	     //        $(this).siblings(".r-input-placeholder").html(txt);
+	     //
+	     //    })
+        //
+        // });
 
         //验证码
         $("#rbtn-captcha").click(function() {
@@ -129,11 +129,11 @@
 
         //提交
         $("#rbtn-sub").click(function() {
-            var usernick = $("#r-nick").val();
+            var kind = $("#r-nick").val();
             var userTel = $("#r-tel").val();
             var userCaptcha = $("#r-captcha").val();
             var userPwd = $("#r-pwd").val();
-            if (usernick == null || usernick == "") {
+            if (kind == null || kind == "") {
                 base.showMsg("请输入昵称");
             } else if (userTel == null || userTel == "") {
                 base.showMsg("请输入手机号");
@@ -146,19 +146,15 @@
 				
 				var userReferee = $("#r-ref").val()
                 var parem = {
-                    "nickname": usernick,
+                    "kind": kind,
                     "mobile": userTel,
                     "loginPwd": userPwd,
                     "loginPwdStrength": base.calculateSecurityLevel(userPwd),
-                    "userReferee": userReferee,
+                    "userReferee": userReferee||'13110992819',
                     "inviteCode":inviteCode,
-                    "userRefereeKind": userRefereeKind||"C",
+                    "userRefereeKind": userRefereeKind||"S",
                     "smsCaptcha": userCaptcha,
                     "kind": "C",
-                    // "isRegHx": "0",
-                    // "province": dprovince,
-                    // "city": dcity,
-                    // "area": darea,
                     "systemCode": SYSTEM_CODE,
                     "companyCode": COMPANY_CODE
                 }
@@ -172,7 +168,7 @@
                         		userId: res.data.userId
                         	}).then(function(res) {
                     			CookieUtil.set("inviteCode", res.data.secretUserId);
-                            	window.location.href = '../user/success.html';
+                                window.location.href = '../share/share-upload.html';
 		                    }, function() {
 		        				base.hideLoading();
 		                        base.showMsg("请求失败");
