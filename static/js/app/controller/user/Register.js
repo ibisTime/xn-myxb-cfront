@@ -9,6 +9,7 @@
     var captchaTime = 60; //重新发送时间
     var inviteCode = base.getUrlParam("inviteCode")||"";
     var userRefereeKind = base.getUrlParam("kind");
+    var userReferee = base.getUrlParam("userReferee");
     var temp = "";
 
     addListener();
@@ -77,16 +78,19 @@
         $("#rbtn-captcha").click(function() {
 
             var userTel = $("#r-tel").val();
-
+            var kind = $("#r-nick").val();
             if (userTel == null || userTel == "") {
                 base.showMsg("请输入手机号");
+            }else if (kind == null || kind == "") {
+                base.showMsg("请选择角色");
             } else if (getProvingTel($("#r-tel"))) {
-				
+
                 if (captchaTime == 60) {
+
                 	var parem = {
                         "mobile": userTel,
                         "bizType": "805041",
-                        "kind": "C",
+                        "kind": kind,
                         "systemCode": SYSTEM_CODE,
                         "companyCode": SYSTEM_CODE,
                     }
@@ -118,7 +122,7 @@
                                 base.showMsg(res.msg);
                             }
                         }, function() {
-            				base.hideLoading();
+                            base.hideLoading();
                             base.showMsg("获取验证码失败");
                         });
                     
@@ -144,7 +148,7 @@
             } else if (getProvingTel($("#r-tel"))) {
 				base.showLoading("注册中...");
 				
-				var userReferee = $("#r-ref").val()
+				// var userReferee = $("#r-ref").val()
                 var parem = {
                     "kind": kind,
                     "mobile": userTel,

@@ -436,46 +436,73 @@ input {
 
 /*下载按钮页*/
 .uploadBg{
-	background-color: #f15353;
-	background-image: url("../images/图标@2x.png");
-	background-position-y: -.18rem;
-	background-position-x: .35rem;
+	background-image: url("../images/下载背景@3x.png");
 	background-repeat: no-repeat;
-	background-size: 6.98rem;
+	background-size: 7.5rem;
 }
 .upload-logo{
 	width: 100%;
 	overflow: hidden;
 	text-align: center;
 	font-size: 0;
-	margin-top: .68rem;
+	margin-top: 2.8rem;
 }
 .upload-logo img{
 	width: 2.14rem;
 }
 .uploadWrap{
-	margin-top: 5.5rem;
+	margin-top: 0.2rem;
 }
 .upload-btn{
 	display: block;
-	width: 5.7rem;
-	height: 1.06rem;
+	width: 3.68rem;
+	height: 0.86rem;
 	margin: 0 auto;
 	background-position-y: center;
-	background-position-x: .95rem;
+	background-position-x: .45rem;
 	background-repeat: no-repeat;
 	background-size: auto .5rem;
-	background-color: #fff;
-	border-radius: .14rem;
+	background-color: #f56066;
+	border-radius: .1rem;
 	margin-bottom: .5rem;
-}
-.upload-android{
-	background-image: url("../images/安卓@2x.png");
-}
-.upload-ios{
-	background-image: url("../images/苹果@2x.png");
+    color: #fff;
+    font-size: 0.3rem;
 }
 
+.upload-android img{
+    width: 0.4rem;
+    height: 0.4rem;
+    display: inline-block;
+    margin-right: 0.2rem;
+    /*background-image: url("../images/安卓1@2x.png");*/
+}
+.upload-android span{
+    position: relative;
+    top : -0.05rem;
+}
+.upload-ios img{
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-right: 0.2rem;
+	/*background-image: url("../images/苹果1@2x.png");*/
+}
+
+.upload-ios span{
+    position: relative;
+    top : -0.05rem;
+}
+.downloadText {
+    margin-top: 4.5rem;
+    /*width: 100px;*/
+    height: 50px;
+    /*background: gray;*/
+    padding-left:2.3rem;
+}
+.downloadText p{
+    text-align: center;
+    width: 150px;
+    font-size: 0.36rem;
+}
 .rs-wrap{
 	width: 100%;
 }
