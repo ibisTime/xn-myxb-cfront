@@ -438,20 +438,21 @@ input {
 .uploadBg{
 	background-image: url("../images/下载背景@3x.png");
 	background-repeat: no-repeat;
-	background-size: 7.5rem;
+	/*background-size: 9.7rem;*/
+	background-size: 100%;
 }
 .upload-logo{
 	width: 100%;
 	overflow: hidden;
 	text-align: center;
 	font-size: 0;
-	margin-top: 2.8rem;
+	margin-top: 50%;
 }
 .upload-logo img{
 	width: 2.14rem;
 }
 .uploadWrap{
-	margin-top: 0.2rem;
+	margin-top: 0.4rem;
 }
 .upload-btn{
 	display: block;
@@ -492,15 +493,14 @@ input {
     top : -0.05rem;
 }
 .downloadText {
-    margin-top: 4.5rem;
-    /*width: 100px;*/
-    height: 50px;
-    /*background: gray;*/
-    padding-left:2.3rem;
+    /*margin-top: 4.5rem;*/
+    margin-top:   60%;
+    height: 30%;
+    text-align: center;
 }
 .downloadText p{
-    text-align: center;
-    width: 150px;
+    margin : 0 auto;
+    width: 3.8rem;
     font-size: 0.36rem;
 }
 .rs-wrap{

@@ -8,8 +8,6 @@ define([
     init();
     
     function init() {
-        base.showMsg("注册成功，请等待系统审核");
-		base.showLoading("加载中...")
 		$.when(
 			getAndroidUrl(),
 			getIosUrl()

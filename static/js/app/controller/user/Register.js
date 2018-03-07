@@ -154,11 +154,10 @@
                     "mobile": userTel,
                     "loginPwd": userPwd,
                     "loginPwdStrength": base.calculateSecurityLevel(userPwd),
-                    "userReferee": userReferee||'13110992819',
+                    "userReferee": userReferee ,
                     "inviteCode":inviteCode,
-                    "userRefereeKind": userRefereeKind||"S",
+                    "userRefereeKind": userRefereeKind ,
                     "smsCaptcha": userCaptcha,
-                    "kind": "C",
                     "systemCode": SYSTEM_CODE,
                     "companyCode": COMPANY_CODE
                 }
@@ -172,7 +171,12 @@
                         		userId: res.data.userId
                         	}).then(function(res) {
                     			CookieUtil.set("inviteCode", res.data.secretUserId);
-                                window.location.href = '../share/share-upload.html';
+                                base.showLoading("加载中...")
+                                setTimeout(function () {
+                                    window.location.href = '../share/share-upload.html';
+
+                                },2000)
+
 		                    }, function() {
 		        				base.hideLoading();
 		                        base.showMsg("请求失败");
