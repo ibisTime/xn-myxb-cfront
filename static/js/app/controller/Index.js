@@ -1,4 +1,4 @@
-define([
+ define([
     'app/controller/base',
     'app/util/ajax',
     'app/module/loading/loading'

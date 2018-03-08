@@ -154,9 +154,9 @@
                     "mobile": userTel,
                     "loginPwd": userPwd,
                     "loginPwdStrength": base.calculateSecurityLevel(userPwd),
-                    "userReferee": userReferee ,
+                    "userReferee": userReferee || '18870421319',
                     "inviteCode":inviteCode,
-                    "userRefereeKind": userRefereeKind ,
+                    "userRefereeKind": userRefereeKind || 'L',
                     "smsCaptcha": userCaptcha,
                     "systemCode": SYSTEM_CODE,
                     "companyCode": COMPANY_CODE
@@ -171,7 +171,8 @@
                         		userId: res.data.userId
                         	}).then(function(res) {
                     			CookieUtil.set("inviteCode", res.data.secretUserId);
-                                base.showLoading("加载中...")
+                                base.showLoading("加载中...");
+                                base.showMsg("注册成功，请等待后台审核");
                                 setTimeout(function () {
                                     window.location.href = '../share/share-upload.html';
 
