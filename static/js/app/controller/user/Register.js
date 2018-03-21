@@ -10,8 +10,6 @@
     var inviteCode = base.getUrlParam("inviteCode")||"";
     var userRefereeKind = base.getUrlParam("kind");
     var userReferee = base.getUrlParam("userReferee");
-
-
     var temp = "";
 
     addListener();
