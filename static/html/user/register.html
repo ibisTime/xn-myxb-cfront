@@ -8,17 +8,7 @@
 </head>
 
 <body class="hp100 bg-r">
-    <div class="r-wrap">
-        <div class="r-telWrap">
-            <div class="r-icon">角色注册</div>
-            <select class="r-style r-input" id="r-nick"/>
-                <option class="r-style r-input" style="width: 100px;"value ="T">美导</option>
-                <option class="r-style r-input" value ="L">讲师</option>
-                <option class="r-style r-input" value="S">专家</option>
-                <option class="r-style r-input" value="C">美容院</option>
-            </select>
-            <div class="r-style r-input-placeholder" data-txt="请选择角色">请选择角色</div>
-        </div>
+    <form class="r-wrap" id="formWrap">
         <div class="r-telWrap">
             <div class="r-icon">手机号</div>
             <input class="r-style r-input" type="tel" id="r-tel" pattern="[0-9]*" />
@@ -37,8 +27,26 @@
             <input class="r-style r-input" type="password" id="r-pwd" />
             <div class="r-style r-input-placeholder" data-txt="请输入密码">请输入密码(不少于6位)</div>
         </div>
+        <div class="r-telWrap">
+            <div class="r-icon">类型</div>
+            <select class="r-style r-input" id="r-kind"/>
+                <option class="r-style r-input" selected value ="T">个人</option>
+                <option class="r-style r-input" value ="C">店家</option>
+            </select>
+        </div>
+        
+        <div class="r-telWrap r-pdf">
+            <div class="r-icon">营业执照/身份证</div>
+            <div class="image-wrap">
+            	<div class="picWrap">
+            		<div class="pic add" id="pic"></div>
+            		<input type="file" id="pdf"  class="fileInput" accept="image/*" multiple >  
+            	</div>
+			</div>
+        </div>
+        
         <input type="button" class="rbtn-sub" id="rbtn-sub" value="注册" />
-    </div>
+    </form>
 
     <div class="r-popup popup-protocol">
         <div class="r-popup-close"><img src="../../images/icon-plus.png" /></div>

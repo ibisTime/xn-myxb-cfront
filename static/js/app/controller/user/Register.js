@@ -11,20 +11,31 @@
     var userRefereeKind = base.getUrlParam("kind");
     var userReferee = base.getUrlParam("userReferee");
     var temp = "";
-
-    addListener();
-
+	var uploadToken;
+	
+    base.showLoading();
+    Ajax.post("805951", { 
+    	json: {
+            systemCode: SYSTEM_CODE,
+            companyCode: SYSTEM_CODE,
+    	}
+    }).then(function(res){
+    	base.hideLoading();
+        if (res.success) {
+        	uploadToken = res.data.uploadToken;
+    		addListener();	
+        }
+    },function(){
+        base.hideLoading();
+        base.showMsg("获取验证码失败");
+    })
 
     function addListener() {
     	if(inviteCode!=""){
     		$("#r-ref-wrap").addClass("hidden")
     	}
     	
-        $("#r-nick").val("");
-        $("#r-tel").val("");
-        $("#r-captcha").val("");
-        $("#r-pwd").val("");
-    	
+    	document.getElementById("formWrap").reset() 
     	
         $(".r-input").focus(function() {
             $(this).siblings(".r-input-placeholder").html(" ");
@@ -36,53 +47,16 @@
             }
         })
 
-//      $("#r-tel").blur(function() {
-//          var userTel = $(this).val();
-//
-//          getProvingTel($(this));
-//          if (temp == "" || temp != userTel) {
-//              temp = userTel
-//              captchaTime = 60;
-//              $("#rbtn-captcha").html("获取验证码");
-//              $("#rbtn-captcha").removeClass("captchaTimeBg");
-//          } else {
-//              temp = temp;
-//          }
-//      });
-        // $("#r-nick").blur(function() {
-        //     var usernick = $(this).val();
-        //     if (usernick < 3 || usernick > 6) {
-        //         base.showMsg("请输入3到6位数的昵称");
-        //         console.log(usernick);
-        //     }
-        // });
-        
         $(".r-popup-close").click(function() {
             $(".r-popup").fadeOut(500);
         });
-
-        //下载倍可盈app>
-        // $(".r-protocol").click(function() {
-        // 	var timestamp = new Date().getTime()
-        //     window.location.href = '../share/share-upload.html?timestamp'+timestamp;
-        // 	$(".r-input").each(function() {
-	     //        var txt = $(this).siblings(".r-input-placeholder").attr("data-txt");
-	     //        $(this).val("")
-	     //        $(this).siblings(".r-input-placeholder").html(txt);
-	     //
-	     //    })
-        //
-        // });
 
         //验证码
         $("#rbtn-captcha").click(function() {
 
             var userTel = $("#r-tel").val();
-            var kind = $("#r-nick").val();
             if (userTel == null || userTel == "") {
                 base.showMsg("请输入手机号");
-            }else if (kind == null || kind == "") {
-                base.showMsg("请选择角色");
             } else if (getProvingTel($("#r-tel"))) {
 
                 if (captchaTime == 60) {
@@ -90,7 +64,7 @@
                 	var parem = {
                         "mobile": userTel,
                         "bizType": "805041",
-                        "kind": kind,
+                        "kind": userRefereeKind,
                         "systemCode": SYSTEM_CODE,
                         "companyCode": SYSTEM_CODE,
                     }
@@ -133,10 +107,12 @@
 
         //提交
         $("#rbtn-sub").click(function() {
-            var kind = $("#r-nick").val();
+            var kind = $("#r-kind").val();
             var userTel = $("#r-tel").val();
             var userCaptcha = $("#r-captcha").val();
             var userPwd = $("#r-pwd").val();
+            var pdf = $("#pdf").attr("data-key")
+            
             if (kind == null || kind == "") {
                 base.showMsg("请输入昵称");
             } else if (userTel == null || userTel == "") {
@@ -145,6 +121,8 @@
                 base.showMsg("请输入验证码");
             } else if (userPwd == null || userPwd == "") {
                 base.showMsg("请输入密码");
+            } else if (pdf == null || pdf == "") {
+                base.showMsg("请上传营业执照/身份证");
             } else if (getProvingTel($("#r-tel"))) {
 				base.showLoading("注册中...");
 				
@@ -158,6 +136,7 @@
                     "inviteCode":inviteCode,
                     "userRefereeKind": userRefereeKind || 'L',
                     "smsCaptcha": userCaptcha,
+                    "pdf": pdf,
                     "systemCode": SYSTEM_CODE,
                     "companyCode": COMPANY_CODE
                 }
@@ -175,20 +154,19 @@
                                 base.showMsg("注册成功，请等待后台审核");
                                 setTimeout(function () {
                                     window.location.href = '../share/share-upload.html';
-
                                 },2000)
-
 		                    }, function() {
 		        				base.hideLoading();
 		                        base.showMsg("请求失败");
 		                    });
+		                    
                             $(".r-input").each(function() {
 					            var txt = $(this).siblings(".r-input-placeholder").attr("data-txt");
 					            $(this).val("")
 					            $(this).siblings(".r-input-placeholder").html(txt);
 					        })
                         } else {
-                            base.showMsg(res.msg);
+                            base.showMsg(res.msg||"注册失败");
                         }
                     }, function() {
         				base.hideLoading();
@@ -198,10 +176,45 @@
             }
 
         })
+        
+        $("#pdf").on('change',function(){
+    		
+    		var f = $("#pdf")[0].files[0];  
+	        jsJustUpload(f, uploadToken); 
+    	})
 
     }
-
-
+    
+    //改函数要求浏览器必须要支持html5  
+    function jsJustUpload(f, token) { 
+    	base.showLoading();
+        var Qiniu_UploadUrl = "http://upload-z2.qiniu.com";  
+        var xhr = new XMLHttpRequest();  
+        xhr.open('POST', Qiniu_UploadUrl, true);  
+        var formData= new FormData();  
+        var imgname = f.name.slice(0,f.name.lastIndexOf('.'));
+        var suffix = f.name.slice(f.name.lastIndexOf('.') + 1);
+        var key =  imgname+'_'+new Date().getTime()+'.'+suffix;
+        
+        formData.append('key', key);  
+        formData.append('token', token);  
+        formData.append('file', f);  
+        xhr.onreadystatechange = function(response) {
+			if(xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
+				var imageKey = JSON.parse(xhr.responseText).key;
+				var imageSrc = PIC_PREFIX + '/' + imageKey;
+				$("#pic").css({'background-image':'url(\''+imageSrc+'?imageMogr2/auto-orient/thumbnail/!600x400r\')'});
+				$("#pic").removeClass('add')
+				$("#pdf").attr("data-key",imageKey);
+				base.hideLoading();
+			} else if(xhr.status != 200 && xhr.responseText) {
+				base.hideLoading();
+				base.showMsg("上传失败！")
+			}
+		};
+        xhr.send(formData);  
+    }  
+    
     function getCaptchaTime(obj, code) {
         var timer;
 

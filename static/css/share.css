@@ -105,8 +105,8 @@ input {
 /*}*/
 
 .r-wrap {
-    margin-top: 3.8rem;
-    padding: 0 .4rem;
+    margin-top: 3rem;
+    padding: 0 .4rem 1rem;
 }
 
 .r-telWrap {
@@ -120,15 +120,15 @@ input {
 }
 
 .r-icon {
-    width: 2rem;
+    width: 2.2rem;
     height: .36rem;
     text-align: left;
-    margin-left: 20px;
+    margin-left: .3rem;
     position: absolute;
     top: .27rem;
     left: 0;
     color: #484848;
-    font-size:0.3rem;
+    font-size:0.28rem;
     /*border-right: 1px solid #fff;*/
 }
 
@@ -748,4 +748,46 @@ input {
     text-align:left;
     padding-left:0.2rem;
     font-size:0.3rem
+}
+.r-pdf{
+	height: 2.6rem;
+}
+.r-pdf .image-wrap{
+	width: 100%;
+	height: 2rem;
+	padding-left: 2.6rem;
+	position: relative;
+	margin-top: .27rem;
+}
+.picWrap{
+	width: 3rem;
+	height: 2rem;
+	position: relative;
+}
+.picWrap .fileInput{
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 99;
+	opacity: 0;
+}
+.picWrap .pic{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 98;
+	background-image: url('../images/添加图片.png');
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.picWrap .pic img{
+	height: 100%;
+	vertical-align: bottom;
+}
+.picWrap .pic.add{
+	border-radius: .04rem;
+	border: 1px dashed #eee;
+	background-size: .8rem;
 }
