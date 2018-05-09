@@ -180,7 +180,9 @@
         $("#pdf").on('change',function(){
     		
     		var f = $("#pdf")[0].files[0];  
-	        jsJustUpload(f, uploadToken); 
+    		if(f){
+	        	jsJustUpload(f, uploadToken); 
+    		}
     	})
 
     }
