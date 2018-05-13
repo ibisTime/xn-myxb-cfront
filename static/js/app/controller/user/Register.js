@@ -190,7 +190,7 @@
     //改函数要求浏览器必须要支持html5  
     function jsJustUpload(f, token) { 
     	base.showLoading();
-        var Qiniu_UploadUrl = "http://upload-z2.qiniu.com";  
+        var Qiniu_UploadUrl = "http://up-z0.qiniup.com";  
         var xhr = new XMLHttpRequest();  
         xhr.open('POST', Qiniu_UploadUrl, true);  
         var formData= new FormData();  
