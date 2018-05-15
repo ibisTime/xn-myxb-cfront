@@ -14,6 +14,10 @@
 	var uploadToken;
 	
     base.showLoading();
+    
+    if(userRefereeKind=='C'){
+    	$("#r-kind").html('<option class="r-style r-input" selected value ="C">店家</option>')
+    }
     Ajax.post("805951", { 
     	json: {
             systemCode: SYSTEM_CODE,
@@ -104,6 +108,15 @@
                 }
             }
         });
+        
+        
+        $("#r-kind").change(function(){
+        	if($("#r-kind").val()=="C"){
+        		$("#storeNameWrap").removeClass("hidden")
+        	}else{
+        		$("#storeNameWrap").addClass("hidden")
+        	}
+        })
 
         //提交
         $("#rbtn-sub").click(function() {
@@ -111,7 +124,9 @@
             var userTel = $("#r-tel").val();
             var userCaptcha = $("#r-captcha").val();
             var userPwd = $("#r-pwd").val();
-            var pdf = $("#pdf").attr("data-key")
+            var realName = $("#r-realName").val();
+            var storeName = $("#r-storeName").val();
+            var pdf = $("#pdf").attr("data-key");
             
             if (kind == null || kind == "") {
                 base.showMsg("请输入昵称");
@@ -121,9 +136,14 @@
                 base.showMsg("请输入验证码");
             } else if (userPwd == null || userPwd == "") {
                 base.showMsg("请输入密码");
+            } else if (realName == null || realName == "") {
+                base.showMsg("请输入姓名");
+            } else if(kind=='C'&&storeName == ""){
+        		base.showMsg("请输入店名");
             } else if (pdf == null || pdf == "") {
                 base.showMsg("请上传营业执照/身份证");
             } else if (getProvingTel($("#r-tel"))) {
+            	
 				base.showLoading("注册中...");
 				
 				// var userReferee = $("#r-ref").val()
@@ -136,6 +156,8 @@
                     "inviteCode":inviteCode,
                     "userRefereeKind": userRefereeKind || 'L',
                     "smsCaptcha": userCaptcha,
+                    "realName": realName,
+                    "storeName": storeName,
                     "pdf": pdf,
                     "systemCode": SYSTEM_CODE,
                     "companyCode": COMPANY_CODE

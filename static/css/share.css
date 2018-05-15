@@ -791,3 +791,11 @@ input {
 	border: 1px dashed #eee;
 	background-size: .8rem;
 }
+.rbtn-download{
+	text-align: center;
+	line-height: 2.2;
+	font-size: .3rem;
+	color: #fff;
+	opacity: .8;
+	margin-top: .28rem;
+}
