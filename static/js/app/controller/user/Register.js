@@ -16,7 +16,9 @@
     base.showLoading();
     
     if(userRefereeKind=='C'){
-    	$("#r-kind").html('<option class="r-style r-input" selected value ="C">店家</option>')
+		$("#storeNameWrap").removeClass("hidden")
+    	$("#r-kind").html('<option class="r-style r-input" selected value ="C">店家</option>');
+    	
     }
     Ajax.post("805951", { 
     	json: {
