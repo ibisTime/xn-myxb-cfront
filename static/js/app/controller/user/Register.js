@@ -175,7 +175,7 @@
                         	}).then(function(res) {
                     			CookieUtil.set("inviteCode", res.data.secretUserId);
                                 base.showLoading("加载中...");
-                                base.showMsg("注册成功，请等待后台审核");
+                                base.showMsg("注册成功！");
                                 setTimeout(function () {
                                     window.location.href = '../share/share-upload.html';
                                 },2000)
